@@ -38,7 +38,6 @@ const months = [
 ];
 
 
-
 const eventsArr = [];
 getEvents();
 console.log(eventsArr);
@@ -221,16 +220,28 @@ function getActiveDay(date) {
   eventDate.innerHTML = date + " " + months[month] + " " + year;
 }
 
-//function update events when a day is active
 function updateEvents(date) {
   let events = "";
-  eventsArr.forEach((event) => {
+  eventsArr.forEach((eventObj) => {
     if (
-      date === event.day &&
-      month + 1 === event.month &&
-      year === event.year
+      date === eventObj.day &&
+      month + 1 === eventObj.month &&
+      year === eventObj.year
     ) {
-      event.events.forEach((event) => {
+      // Sort events by start time
+      eventObj.events.sort((a, b) => {
+        const getMinutes = (timeStr) => {
+          const [time, modifier] = timeStr.split(" ");
+          let [hours, minutes] = time.split(":").map(Number);
+          if (modifier === "PM" && hours !== 12) hours += 12;
+          if (modifier === "AM" && hours === 12) hours = 0;
+          return hours * 60 + minutes;
+        };
+        return getMinutes(a.time.split(" - ")[0]) - getMinutes(b.time.split(" - ")[0]);
+      });
+
+      // Create HTML
+      eventObj.events.forEach((event) => {
         events += `<div class="event">
             <div class="title">
               <i class="fas fa-circle"></i>
@@ -243,10 +254,11 @@ function updateEvents(date) {
       });
     }
   });
+
   if (events === "") {
     events = `<div class="no-event">
-            <h3>No Events</h3>
-        </div>`;
+                <h3>No Events</h3>
+              </div>`;
   }
   eventsContainer.innerHTML = events;
   saveEvents();
