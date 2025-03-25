@@ -452,3 +452,13 @@ function convertTime(time) {
   time = timeHour + ":" + timeMin + " " + timeFormat;
   return time;
 }
+
+const eventColors = ["red", "orange", "yellow", "green", "blue", "purple"];
+
+document.querySelectorAll(".events").forEach(eventContainer => {
+    let events = eventContainer.querySelectorAll(".event");
+    events.forEach((event, index) => {
+        let colorIndex = index % eventColors.length; 
+        event.style.background = `linear-gradient(90deg, ${eventColors[colorIndex]}, transparent)`;
+    });
+})
