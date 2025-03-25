@@ -479,3 +479,13 @@ body {
   background-color: transparent;
   color: var(--primary-clr);
 }
+
+.events .event:nth-child(1) {
+  background: linear-gradient(90deg, rgb(155, 4, 4), transparent);
+}
+.events .event:nth-child(2) {
+  background: linear-gradient(90deg, rgb(177, 117, 6), transparent);
+}
+.events .event:nth-child(3) {
+  background: linear-gradient(90deg, rgb(151, 151, 6), transparent);
+}
