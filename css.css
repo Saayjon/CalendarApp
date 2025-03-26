@@ -7,7 +7,6 @@
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
-/* a scroll bar */
 ::-webkit-scrollbar {
   width: 5px;
 }
@@ -50,7 +49,7 @@ body {
   width: 40%;
   padding: 20px
 }
-.calendar {
+.Personalcalendar {
   position: relative;
   width: 100%;
   height: 100%;
@@ -62,9 +61,9 @@ body {
   border-radius: 5px;
   background-color: #fff;
 }
-/* set after behind the main element */
-.calendar::before,
-.calendar::after {
+
+.Personalcalendar::before,
+.Personalcalendar::after {
   content: "";
   position: absolute;
   top: 50%;
@@ -75,12 +74,12 @@ body {
   background-color: #d3d4d6d7;
   transform: translateY(-50%);
 }
-.calendar::before {
+.Personalcalendar::before {
   height: 94%;
   right: calc(100% + 12px);
   background-color: rgb(153, 153, 153);
 }
-.calendar .month {
+.Personalcalendar .month {
   width: 100%;
   height: 150px;
   display: flex;
@@ -91,15 +90,15 @@ body {
   font-weight: 500;
   text-transform: capitalize;
 }
-.calendar .month .prev,
-.calendar .month .next {
+.Personalcalendar .month .prev,
+.Personalcalendar .month .next {
   cursor: pointer;
 }
-.calendar .month .prev:hover,
-.calendar .month .next:hover {
+.Personalcalendar .month .prev:hover,
+.Personalcalendar .month .next:hover {
   color: var(--primary-clr);
 }
-.calendar .weekdays {
+.Personalcalendar .weekdays {
   width: 100%;
   height: 100px;
   display: flex;
@@ -117,7 +116,7 @@ body {
   align-items: center;
   justify-content: center;
 }
-.calendar .days {
+.Personalcalendar .days {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
@@ -127,7 +126,7 @@ body {
   font-weight: 500;
   margin-bottom: 20px;
 }
-.calendar .days .day {
+.Personalcalendar .days .day {
   width: 14.28%;
   height: 90px;
   display: flex;
@@ -137,34 +136,34 @@ body {
   color: var(--primary-clr);
   border: 1px solid #f5f5f5;
 }
-.calendar .days .day:nth-child(7n + 1) {
+.Personalcalendar .days .day:nth-child(7n + 1) {
   border-left: 2px solid #f5f5f5;
 }
-.calendar .days .day:nth-child(7n) {
+.Personalcalendar .days .day:nth-child(7n) {
   border-right: 2px solid #f5f5f5;
 }
-.calendar .days .day:nth-child(-n + 7) {
+.Personalcalendar .days .day:nth-child(-n + 7) {
   border-top: 2px solid #f5f5f5;
 }
-.calendar .days .day:nth-child(n + 29) {
+.Personalcalendar .days .day:nth-child(n + 29) {
   border-bottom: 2px solid #f5f5f5;
 }
 
-.calendar .days .day:not(.prev-date, .next-date):hover {
+.Personalcalendar .days .day:not(.prev-date, .next-date):hover {
   color: #fff;
   background-color: var(--primary-clr);
 }
-.calendar .days .prev-date,
-.calendar .days .next-date {
+.Personalcalendar .days .prev-date,
+.Personalcalendar .days .next-date {
   color: #b3b3b3;
 }
-.calendar .days .active {
+.Personalcalendar .days .active {
   position: relative;
   font-size: 2rem;
   color: #fff;
   background-color: var(--primary-clr);
 }
-.calendar .days .active::before {
+.Personalcalendar .days .active::before {
   content: "";
   position: absolute;
   top: 0;
@@ -173,13 +172,13 @@ body {
   height: 100%;
   box-shadow: 0 0 10px 2px var(--primary-clr);
 }
-.calendar .days .today {
+.Personalcalendar .days .today {
   font-size: 2rem;
 }
-.calendar .days .event {
+.Personalcalendar .days .event {
   position: relative;
 }
-.calendar .days .event::after {
+.Personalcalendar .days .event::after {
   content: "";
   position: absolute;
   bottom: 10%;
@@ -190,17 +189,17 @@ body {
   transform: translateX(-50%);
   background-color: var(--primary-clr);
 }
-.calendar .days .day:hover.event::after {
+.Personalcalendar .days .day:hover.event::after {
   background-color: #fff;
 }
-.calendar .days .active.event::after {
+.Personalcalendar .days .active.event::after {
   background-color: #fff;
   bottom: 20%;
 }
-.calendar .days .active.event {
+.Personalcalendar .days .active.event {
   padding-bottom: 10px;
 }
-.calendar .goto-today {
+.Personalcalendar .currentDay {
   width: 100%;
   height: 50px;
   display: flex;
@@ -211,14 +210,14 @@ body {
   margin-bottom: 20px;
   color: var(--primary-clr);
 }
-.calendar .goto-today .goto {
+.Personalcalendar .currentDay .goto {
   display: flex;
   align-items: center;
   border-radius: 5px;
   overflow: hidden;
   border: 1px solid var(--primary-clr);
 }
-.calendar .goto-today .goto input {
+.Personalcalendar .currentDay .goto input {
   width: 100%;
   height: 30px;
   outline: none;
@@ -228,7 +227,7 @@ body {
   color: var(--primary-clr);
   border-radius: 5px;
 }
-.calendar .goto-today button {
+.Personalcalendar .currentDay button {
   padding: 5px 10px;
   border: 1px solid var(--primary-clr);
   border-radius: 5px;
@@ -236,11 +235,11 @@ body {
   cursor: pointer;
   color: var(--primary-clr);
 }
-.calendar .goto-today button:hover {
+.Personalcalendar .currentDay button:hover {
   color: #fff;
   background-color: var(--primary-clr);
 }
-.calendar .goto-today .goto button {
+.Personalcalendar .currentDay .goto button {
   border: none;
   border-left: 1px solid var(--primary-clr);
   border-radius: 0;
@@ -299,7 +298,7 @@ body {
   background: linear-gradient(90deg, #3f4458, transparent);
   cursor: pointer;
 }
-/* even event */
+
 .events .event:nth-child(even) {
   background: transparent;
 }
@@ -420,7 +419,7 @@ body {
   font-size: 1.2rem;
   font-weight: 500;
 }
-.add-event-body {
+.addBookingBody {
   width: 100%;
   height: 100%;
   display: flex;
@@ -428,7 +427,7 @@ body {
   gap: 5px;
   padding: 20px;
 }
-.add-event-body .add-event-input {
+.addBookingBody .addingInput {
   width: 100%;
   height: 40px;
   display: flex;
@@ -436,7 +435,7 @@ body {
   justify-content: space-between;
   gap: 10px;
 }
-.add-event-body .add-event-input input {
+.addBookingBody .addingInput input {
   width: 100%;
   height: 100%;
   outline: none;
@@ -447,13 +446,13 @@ body {
   font-weight: 400;
   color: #373c4f;
 }
-.add-event-body .add-event-input input::placeholder {
+.addBookingBody .addingInput input::placeholder {
   color: #a5a5a5;
 }
-.add-event-body .add-event-input input:focus {
+.addBookingBody .addingInput input:focus {
   border-bottom: 1px solid var(--primary-clr);
 }
-.add-event-body .add-event-input input:focus::placeholder {
+.addBookingBody .addingInput input:focus::placeholder {
   color: var(--primary-clr);
 }
 .add-event-footer {
