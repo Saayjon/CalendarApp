@@ -6,16 +6,16 @@ const calendar = document.querySelector(".calendar"),
   todayBtn = document.querySelector(".today-btn"),
   gotoBtn = document.querySelector(".goto-btn"),
   dateInput = document.querySelector(".date-input"),
-  eventDay = document.querySelector(".event-day"),
+  bookingDay = document.querySelector(".bookingDay"),
   eventDate = document.querySelector(".event-date"),
-  eventsContainer = document.querySelector(".events"),
-  addEventBtn = document.querySelector(".add-event"),
-  addEventWrapper = document.querySelector(".add-event-wrapper "),
+  bookingsContainer = document.querySelector(".events"),
+  addEventBtn = document.querySelector(".addBooking"),
+  addEventWrapper = document.querySelector(".addBookingWrapper"),
   addEventCloseBtn = document.querySelector(".close "),
-  addEventTitle = document.querySelector(".event-name "),
-  addEventFrom = document.querySelector(".event-time-from "),
-  addEventTo = document.querySelector(".event-time-to "),
-  addEventSubmit = document.querySelector(".add-event-btn ");
+  addBookingTitle = document.querySelector(".bookingName "),
+  addBookingTimeFrom = document.querySelector(".bookingTimeFrom "),
+  addBookingTimeTo = document.querySelector(".bookingTimeTo "),
+  addBookingSubmit = document.querySelector(".addBookingBtn ");
 
 let today = new Date();
 let activeDay;
@@ -39,7 +39,7 @@ const months = [
 
 
 const eventsArr = [];
-getEvents();
+getBookings();
 console.log(eventsArr);
 
 //function to add days in days with class day and prev-date next-date on previous month and next month days and active on today
@@ -79,7 +79,7 @@ function personalCalendar() {
     ) {
       activeDay = i;
       getActiveDay(i);
-      eventUpdater(i);
+      bookingUpdater(i);
       if (event) {
         days += `<div class="day today active event">${i}</div>`;
       } else {
@@ -131,7 +131,7 @@ function addListner() {
   days.forEach((day) => {
     day.addEventListener("click", (e) => {
       getActiveDay(e.target.innerHTML);
-      eventUpdater(Number(e.target.innerHTML));
+      bookingUpdater(Number(e.target.innerHTML));
       activeDay = Number(e.target.innerHTML);
       //remove active
       days.forEach((day) => {
@@ -212,15 +212,15 @@ function gotoDate() {
   alert("Invalid Date");
 }
 
-//function get active day day name and date and update eventday eventdate
+//function get active day day name and date and update bookingDay eventdate
 function getActiveDay(date) {
   const day = new Date(year, month, date);
   const dayName = day.toString().split(" ")[0];
-  eventDay.innerHTML = dayName;
+  bookingDay.innerHTML = dayName;
   eventDate.innerHTML = date + " " + months[month] + " " + year;
 }
 
-function eventUpdater(date) {
+function bookingUpdater(date) {
   let events = "";
   eventsArr.forEach((eventObj) => {
     if (
@@ -260,8 +260,8 @@ function eventUpdater(date) {
                 <h3>No Events</h3>
               </div>`;
   }
-  eventsContainer.innerHTML = events;
-  saveEvents();
+  bookingsContainer.innerHTML = events;
+  saveBookings();
 }
 
 //function to add event
@@ -280,38 +280,38 @@ document.addEventListener("click", (e) => {
 });
 
 //allow 50 chars in eventtitle
-addEventTitle.addEventListener("input", (e) => {
-  addEventTitle.value = addEventTitle.value.slice(0, 60);
+addBookingTitle.addEventListener("input", (e) => {
+  addBookingTitle.value = addBookingTitle.value.slice(0, 60);
 });
 
 
 
 //allow only time in eventtime from and to
-addEventFrom.addEventListener("input", (e) => {
-  addEventFrom.value = addEventFrom.value.replace(/[^0-9:]/g, "");
-  if (addEventFrom.value.length === 2) {
-    addEventFrom.value += ":";
+addBookingTimeFrom.addEventListener("input", (e) => {
+  addBookingTimeFrom.value = addBookingTimeFrom.value.replace(/[^0-9:]/g, "");
+  if (addBookingTimeFrom.value.length === 2) {
+    addBookingTimeFrom.value += ":";
   }
-  if (addEventFrom.value.length > 5) {
-    addEventFrom.value = addEventFrom.value.slice(0, 5);
+  if (addBookingTimeFrom.value.length > 5) {
+    addBookingTimeFrom.value = addBookingTimeFrom.value.slice(0, 5);
   }
 });
 
-addEventTo.addEventListener("input", (e) => {
-  addEventTo.value = addEventTo.value.replace(/[^0-9:]/g, "");
-  if (addEventTo.value.length === 2) {
-    addEventTo.value += ":";
+addBookingTimeTo.addEventListener("input", (e) => {
+  addBookingTimeTo.value = addBookingTimeTo.value.replace(/[^0-9:]/g, "");
+  if (addBookingTimeTo.value.length === 2) {
+    addBookingTimeTo.value += ":";
   }
-  if (addEventTo.value.length > 5) {
-    addEventTo.value = addEventTo.value.slice(0, 5);
+  if (addBookingTimeTo.value.length > 5) {
+    addBookingTimeTo.value = addBookingTimeTo.value.slice(0, 5);
   }
 });
 
 //function to add event to eventsArr
-addEventSubmit.addEventListener("click", () => {
-  const eventTitle = addEventTitle.value;
-  const eventTimeFrom = addEventFrom.value;
-  const eventTimeTo = addEventTo.value;
+addBookingSubmit.addEventListener("click", () => {
+  const eventTitle = addBookingTitle.value;
+  const eventTimeFrom = addBookingTimeFrom.value;
+  const eventTimeTo = addBookingTimeTo.value;
   if (eventTitle === "" || eventTimeFrom === "" || eventTimeTo === "") {
     alert("Please fill all the fields");
     return;
@@ -385,10 +385,10 @@ addEventSubmit.addEventListener("click", () => {
 
   console.log(eventsArr);
   addEventWrapper.classList.remove("active");
-  addEventTitle.value = "";
-  addEventFrom.value = "";
-  addEventTo.value = "";
-  eventUpdater(activeDay);
+  addBookingTitle.value = "";
+  addBookingTimeFrom.value = "";
+  addBookingTimeTo.value = "";
+  bookingUpdater(activeDay);
   //select active day and add event class if not added
   const activeDayEl = document.querySelector(".day.active");
   if (!activeDayEl.classList.contains("event")) {
@@ -397,7 +397,7 @@ addEventSubmit.addEventListener("click", () => {
 });
 
 //function to delete event when clicked on event
-eventsContainer.addEventListener("click", (e) => {
+bookingsContainer.addEventListener("click", (e) => {
   if (e.target.classList.contains("event")) {
     if (confirm("Would you like to delete this?")) {
       const eventTitle = e.target.children[0].children[1].innerHTML;
@@ -423,18 +423,18 @@ eventsContainer.addEventListener("click", (e) => {
           }
         }
       });
-      eventUpdater(activeDay);
+      bookingUpdater(activeDay);
     }
   }
 });
 
 //function to save events in local storage
-function saveEvents() {
+function saveBookings() {
   localStorage.setItem("events", JSON.stringify(eventsArr));
 }
 
 //function to get events from local storage
-function getEvents() {
+function getBookings() {
   //check if events are already saved in local storage then return event else nothing
   if (localStorage.getItem("events") === null) {
     return;

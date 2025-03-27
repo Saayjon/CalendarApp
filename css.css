@@ -265,7 +265,7 @@ body {
   margin-bottom: 20px;
   text-transform: capitalize;
 }
-.right .today-date .event-day {
+.right .today-date .bookingDay {
   font-size: 2rem;
   font-weight: 500;
 }
@@ -350,7 +350,7 @@ body {
 .events .event:hover::after {
   display: flex;
 }
-.add-event {
+.addBooking {
   position: absolute;
   bottom: 30px;
   left: 225px;
@@ -367,10 +367,10 @@ body {
   background-color: transparent;
   cursor: pointer;
 }
-.add-event:hover {
+.addBooking:hover {
   opacity: 1;
 }
-.add-event i {
+.addBooking i {
   pointer-events: none;
 }
 .events .no-event {
@@ -383,7 +383,7 @@ body {
   font-weight: 500;
   color: white;
 }
-.add-event-wrapper {
+.addBookingWrapper {
   position: absolute;
   bottom: 100px;
   left: 50%;
@@ -395,7 +395,7 @@ body {
   transform: translateX(-50%);
   transition: max-height 0.5s ease;
 }
-.add-event-wrapper.active {
+.addBookingWrapper.active {
   max-height: 300px;
 }
 .add-event-header {
@@ -461,7 +461,7 @@ body {
   justify-content: center;
   padding: 20px;
 }
-.add-event-footer .add-event-btn {
+.add-event-footer .addBookingBtn {
   height: 40px;
   font-size: 1rem;
   font-weight: 500;
@@ -474,7 +474,7 @@ body {
   padding: 5px 10px;
   border: 1px solid var(--primary-clr);
 }
-.add-event-footer .add-event-btn:hover {
+.add-event-footer .addBookingBtn:hover {
   background-color: transparent;
   color: var(--primary-clr);
 }
